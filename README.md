@@ -1,20 +1,13 @@
 ## Nivel 2: API REST para Detección de Mutantes
 
-1. **Crear la API REST**:
-   - La API está diseñada para detectar si un humano es mutante mediante una secuencia de ADN.
-
-2. **Hostear la API**:
-   - La API se encuentra hospedada en Render, un servicio de cloud computing gratuito.
-   - [Deploy en Render](https://parcial-1-mutantes-1.onrender.com/swagger-ui/index.html)
+1. **API HOSTEADA EN RENDER**:
+   - La API se encuentra deployeada en Render. LINK: https://parcial1-ih1t.onrender.com
 
 
-3. **Endpoint del Servicio**:
-   - El servicio para verificar si un humano es mutante se puede acceder en el siguiente endpoint:
-     ```
-     POST http://localhost:8080/mutant
-     ```
+2. **PROBAR POST /mutant**:
+   - Para comprobar el post se puede abrir Swagger con este link: https://parcial1-ih1t.onrender.com/swagger-ui/index.html
 
-4. **Formato de la Solicitud**:
+3. **Formato del POST**:
    - La solicitud debe enviarse en formato JSON con el siguiente formato:
      ```json
      {
@@ -22,7 +15,7 @@
      }
      ```
 
-5. **Respuestas**:
+4. **Respuestas**:
    - Si el ADN es de un mutante, se devuelve un código HTTP **200 OK**.
    - Si el ADN pertenece a un humano, se devuelve un código HTTP **403 Forbidden**.
 
@@ -33,35 +26,29 @@
 1. **Integración de H2**:
    - Se ha anexado una base de datos H2 para almacenar los ADN verificados.
    - Solo se permite un registro por ADN.
+   - Para visualizar la base de datos se utiliza este link: https://parcial1-ih1t.onrender.com/h2-console/
+   - Se debe usar en JDBC URL: jdbc:h2:mem:testdb
 
-2. **Endpoint de Estadísticas**:
-   - Un servicio adicional para exponer estadísticas de verificaciones de ADN:
-     ```
-     GET http://localhost:8080/stats
-     ```
+2. **PROBAR GET /stats**:
+   - Para comprobar el GET se puede abrir Swagger con este link: https://parcial1-ih1t.onrender.com/swagger-ui/index.html
+   - Se ejecuta dentro del Swagger
 
 3. **Formato de Respuesta de Estadísticas**:
    - La respuesta devuelve un JSON con el siguiente formato:
      ```json
      {
-       "count_mutant_dna": 4,
+       "count_mutant_dna": 1,
        "count_human_dna": 1,
-       "ratio": 4
+       "ratio": 1
      }
      ```
 
 4. **Requisitos de Escalabilidad**:
    - La API está diseñada para manejar fluctuaciones agresivas de tráfico, con un rango estimado de entre 100 y 1 millón de peticiones por segundo.
+   - Esto se midio con JMeter, con los resultados en el PDF
 
 5. **Pruebas Automáticas**:
    - Se implementaron pruebas automáticas con una cobertura de código superior al **80%**.
+   - Esto se midio con Jacoco, con los resultados en el PDF
 
 ---
-
-## Resultados de Pruebas
-
-- **Resultados de JMeter**:
-  - Los resultados obtenidos de las pruebas de carga con JMeter se encuentran en el PDF
-
-- **Resultados de JaCoCo**:
-  - Los resultados de las pruebas automáticas y la cobertura de código con JaCoCo se encuentran en el PDF
